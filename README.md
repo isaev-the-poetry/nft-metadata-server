@@ -42,7 +42,11 @@ npx prisma generate
 npx prisma db push
 ```
 
-5. Seed the database (optional):
+5.1. Create initial metadata:
+```edit scripts/seed.ts
+```
+
+5.2. Seed the database (optional):
 ```bash
 npm run seed
 ```
