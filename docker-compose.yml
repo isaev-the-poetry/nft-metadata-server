@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production 
+    environment:
+      - DATABASE_URL=file:/app/prisma/dev.db
+      - NODE_ENV=production 
+    restart: unless-stopped 
+    volumes:
+      - ./prisma:/app/prisma
+    networks:
+      - nginx-network 
+  
+networks:
+  nginx-network:
+    external: true
+    name: nginx-network

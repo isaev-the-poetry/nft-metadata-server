@@ -1,0 +1,46 @@
+ generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model nft_collection {
+  id          Int          @id @default(autoincrement())
+  image       String
+  name        String
+  description String
+
+  address     String?
+
+  tokens      nft_token[] 
+}
+
+model nft_token {
+  id              Int          
+  name            String
+  description     String
+  image           String
+  content_url     String
+  attributes      Json?
+
+  collection_id    Int
+  collection      nft_collection  @relation(fields: [collection_id], references: [id])
+
+  cnft compressed_nft? 
+  @@id([id, collection_id])
+}
+
+model compressed_nft {
+  token_id Int
+  collection_id Int
+ 
+	owner String
+	individual_content String
+
+  token nft_token @relation(fields: [token_id, collection_id], references: [id, collection_id])
+  @@unique([token_id, collection_id])
+}
+ 
