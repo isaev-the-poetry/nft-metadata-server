@@ -21,7 +21,7 @@ A lightweight, high-performance NFT metadata server built with NestJS for the TO
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/isaev-the-poetry/nft-metadata-server
 cd nft-metadata-server
 ```
 
